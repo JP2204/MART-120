@@ -5,3 +5,7 @@ body{
 h1{
   font-family: fantasy;
 }
+
+#nav{
+  color: rgb(214, 147, 214);
+}
