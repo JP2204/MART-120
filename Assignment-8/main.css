@@ -1,0 +1,31 @@
+body{
+  background-color: gray;
+}
+
+h1{
+  font-family: fantasy;
+}
+
+#nav{
+  color: rgb(214, 147, 214);
+  text-decoration: none;
+}
+
+#head{
+  color: rgb(35, 123, 166);
+}
+
+.main{
+  font-family: sans-serif;
+  font-size: 45px;
+}
+
+.body{
+  background-image: url('./images/concrete.jpg'); centered
+
+}
+
+p{
+  color: rgb(255, 158, 231);
+
+}
