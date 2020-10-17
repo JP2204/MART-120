@@ -25,7 +25,7 @@ function draw()
 
 
 // right arm
-  line(130,260, 35, 305);
+  line(130,260, 65, 305);
 // left arm
   line(305,260, 35, 305);
 // left leg
