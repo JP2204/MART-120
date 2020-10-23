@@ -19,7 +19,12 @@ var righteyeDirection = 2;
 
 var lefteyeX = 295;
 var lefteyeY = 115;
-var lefteyeDirection = 3;
+var lefteyeXDirection = 1;
+var lefteyeYDirection = -1.5;
+
+var titlesize = 22;
+var count = 0;
+var titlesizeDirection = 1;
 
 
 
@@ -34,7 +39,14 @@ function setup()
 function draw()
 {
   background(159, 41, 144);
-  textSize(22)
+  textSize(titlesize);
+  titlesize+=titlesizeDirection;
+  count++;
+  if(count > 5)
+  {
+    titlesizeDirection *= -1;
+    count = 0;
+  }
   text('What Is Self?', 10,100);
 
 // head
@@ -51,6 +63,18 @@ function draw()
     righteyeDirection *= -1;
   }
   ellipse(lefteyeX,lefteyeY,30,20);
+  lefteyeX+=lefteyeXDirection;
+  lefteyeY+=lefteyeYDirection;
+     if(lefteyeX >= 493 || lefteyeX <= 25)
+     {
+        lefteyeXDirection *= -1;
+
+     }
+     if(lefteyeY >= 585 || lefteyeY <= 45)
+     {
+        lefteyeYDirection *= -1;
+
+     }
 
 
 
