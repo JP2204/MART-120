@@ -1,3 +1,28 @@
+var headX = 208
+var headY = 
+var headDirection = 1;
+
+var bodyX = 190
+var bodyY = 175
+var bodyDirection = 4;
+
+var leftlegX = 200;
+var leftlegY = 175;
+var leftlegDirection = 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function setup()
 {
     createCanvas(500, 600);
