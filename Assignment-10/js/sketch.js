@@ -1,6 +1,4 @@
-var righteyeX = 100;
-var righteyeY = 95;
-var righteyeDirection = 2;
+
 
 var bodyX = 135;
 var bodyY = 185;
@@ -15,9 +13,17 @@ var rightlegX = 150;
 var rightlegY = 350;
 var rightlegDirection = 3;
 
-var rightarmX = 130;
-var rightarmY = 275;
-var rightarmDirection = 2;
+var righteyeX = 200;
+var righteyeY = 115;
+var righteyeDirection = 2;
+
+var lefteyeX = 295;
+var lefteyeY = 115;
+var lefteyeDirection = 3;
+
+
+
+
 function setup()
 {
     createCanvas(500, 600);
@@ -36,15 +42,21 @@ function draw()
   triangle(30, 220,208, 100, 360, 220);
 
 // eyes
-  strokeWeight(5);
-  fill(61, 233, 202);
-  point(righteyeX, 95);
-  point(285,95);
-  righteyeX+=righteyeDirection;
-  if(righteyeX <= 418 || righteyeX <= 82);
+  strokeWeight(3);
+  fill(237, 151, 21);
+  ellipse(righteyeX,115,30,20);
+  righteyeX += righteyeDirection;
+  if(righteyeX <=0 || righteyeX >=450)
   {
     righteyeDirection *= -1;
   }
+  ellipse(lefteyeX,lefteyeY,30,20);
+
+
+
+
+
+
 
 // body
   fill(185, 129, 236);
@@ -58,12 +70,8 @@ function draw()
 
 
 // right arm
-  line(rightarmX,rightarmY, 65, 305);
-  rightarmX += rightarmDirection;
-  if(rightarmX >=300 || <=60)
-  {
-    rightarmDirection *= -1;
-  }
+  line(130,275, 65, 305);
+
 // left arm
   line(305,260, 35, 305);
 // left leg
