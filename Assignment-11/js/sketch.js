@@ -21,6 +21,7 @@ var shapeY2Speed;
 // shape when the mouse is clicked
 var mouseShapeX;
 var mouseShapeY;
+
 function setup()
 {
     createCanvas(600, 650);
@@ -33,6 +34,44 @@ function draw()
     background(114, 19, 116);
     stroke(0);
     fill(0);
+
+    // call borderCreation function
+    borderCreation();
+
+    // exit message
+    exitMessage();
+
+    //character creation function
+    createCharacter();
+
+    // this function controls the character
+    characterControls();
+
+    // calls enemy
+    createEnemy();
+
+     // gets a random speed for the enemy each time page is refreshed
+    getEnemySpeed();
+
+    // moves the enemy (with WASD)
+    moveEnemy();
+
+    // function that checks to see if the shape has gone out of bounds
+    outOfBoundsCheck();
+
+    // checks to see if the character has left the exit
+    exitCheck();
+
+    // creates the shape based on the mouse click location
+    createShapeOnMC();
+
+
+
+
+
+
+function borderCreation()
+{
     // top border
     rect(0,0,width,10);
     // left border
@@ -41,53 +80,73 @@ function draw()
     rect(0, height-10,width, 10);
     // right upper border
     rect(width-10,0,10,height-50);
+}
 
-    // exit
-    textSize(14);
-    text("EXIT", width-50,height-50)
+function exitMessage()
+{
+     // exit message
+     textSize(16);
+     text("EXIT", width-50,height-50)
+}
 
-    //character
-    fill(19, 200, 232);
-    circle(characterX,characterY,45);
+function createCharacter()
+{
+     //character
+     fill(0,255,0);
+     circle(characterX,characterY,25);
+}
 
-    // key move speed
+function characterControls()
+{
+
+    // handle the keys
     if(keyIsDown(w))
     {
-        characterY -= 6;
+        characterY -= 10;
     }
     if(keyIsDown(s))
     {
-        characterY += 6;
+        characterY += 10;
     }
     if(keyIsDown(a))
     {
-        characterX -= 6;
+        characterX -= 10;
     }
     if(keyIsDown(d))
     {
-        characterX += 6;
+        characterX += 10;
     }
+}
 
-    // potential enemy
-    fill(241, 104, 5);
-    circle(shapeX, shapeY, 20);
-    //second enemy
-    fill(235, 15, 213);
-    circle(shapeX2,shapeY2,65)
+function createEnemy()
+{
+     // potential enemy
+     fill(0,0,0);
+     // draw the shape
+     circle(shapeX, shapeY, 75);
+     fill(255,255,255);
+     circle(shapeX2,shapeY2, 50);
+}
 
+function getEnemySpeed()
+{
+    shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeXSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeYSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
 
-    // get a random speed when the it first starts
-     shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-     shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-     shapeX2Speed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-     shapeY2Speed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+}
 
-    // move the shape
+function moveEnemy()
+{
     shapeX += shapeXSpeed;
     shapeY += shapeYSpeed;
-    shapeX2 += shapeX2Speed;
-    shapeY2 += shapeY2Speed;
-    // check to see if the shape has gone out of bounds
+    shapeX2 += shapeXSpeed2;
+    shapeY2 += shapeYSpeed2;
+}
+
+function outOfBoundsCheck()
+{
     if(shapeX > width)
     {
         shapeX = 0;
@@ -121,19 +180,19 @@ function draw()
         shapeY2 = height;
     }
 
-    // check to see if the character has left the exit
+}
+
+function exitCheck()
+{
     if(characterX > width && characterY > width-50)
     {
-        fill(229, 249, 0);
+        fill(0);
         stroke(5);
-        textSize(30);
+        textSize(26);
         text("You Win!", width/2-50, height/2-50);
     }
+}
 
-    // shape on the mouse click
-    fill(12, 12, 14);
-    circle(mouseShapeX, mouseShapeY, 25);
-    }
     function mouseClicked()
     {
       mouseShapeX = mouseX;
