@@ -193,7 +193,7 @@ function exitCheck()
     }
 }
 
-    function mouseClicked()
+function mouseClicked()
     {
       mouseShapeX = mouseX;
       mouseShapeY = mouseY;
