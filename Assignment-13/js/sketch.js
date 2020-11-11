@@ -7,16 +7,16 @@ var a = 65;
 var d = 68;
 
 // x and y for shape1
-var shapeX = 50;
-var shapeY = 45;
-var shapeXSpeed;
-var shapeYSpeed;
-
+var shapeX = [];
+var shapeY = [];
+var diameters = [];
+var shapeXSpeed = [];
+var shapeYSpeed = [];
 // x and y for shape2
-var shapeX2 = 379;
-var shapeY2 = 379;
-var shapeX2Speed;
-var shapeY2Speed;
+//var shapeX2 = 379;
+//var shapeY2 = 379;
+//var shapeX2Speed;
+//var shapeY2Speed;
 
 // shape when the mouse is clicked
 var mouseShapeX;
@@ -25,8 +25,15 @@ var mouseShapeY;
 function setup()
 {
     createCanvas(600, 650);
-    shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 2);
-    shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 2);
+
+    for (var i = 0; i < 10; i++)
+    {
+    shapeXSpeed[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeYSpeed[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeX[i] = getRandomNumber(500);
+    shapeY[i] = getRandomNumber(600);
+    diameters[i] = getRandomNumber(40);
+    }
 }
 
 function draw()
@@ -65,10 +72,16 @@ function draw()
     // creates the shape based on the mouse click location
     createShapeOnMC();
 
+  }
 
 
 
 
+function mouseClicked()
+  {
+      mouseShapeX = mouseX;
+      mouseShapeY = mouseY;
+  }
 
 function borderCreation()
 {
@@ -92,7 +105,7 @@ function exitMessage()
 function createCharacter()
 {
      //character
-     fill(0,255,0);
+     fill(255, 122, 0);
      circle(characterX,characterY,25);
 }
 
@@ -121,64 +134,75 @@ function characterControls()
 function createEnemy()
 {
      // potential enemy
-     fill(0,0,0);
+     fill(234, 238, 12);
      // draw the shape
-     circle(shapeX, shapeY, 75);
-     fill(255,255,255);
-     circle(shapeX2,shapeY2, 50);
+     for (var i = 0; i < shapeX.length; i++) {
+
+       circle(shapeX[i], shapeY[i], diameters[i]);
+       shapeXSpeed[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+       shapeYSpeed[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    }
 }
 
 function getEnemySpeed()
 {
-    shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    shapeXSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-    shapeYSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-
+    for (var i = 0; i < shapeXSpeed.length; i++)
+  {
+    shapeXSpeed[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeYSpeed[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    // shapeXSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    // shapeYSpeed2 = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+  }
 }
 
 function moveEnemy()
 {
-    shapeX += shapeXSpeed;
-    shapeY += shapeYSpeed;
-    shapeX2 += shapeXSpeed2;
-    shapeY2 += shapeYSpeed2;
+    for (var i = 0; i < shapeXSpeed.length; i++)
+    {
+    shapeX[i] += shapeXSpeed[i];
+    shapeY[i] += shapeYSpeed[i];
+    }
+    // shapeX2 += shapeXSpeed2;
+    // shapeY2 += shapeYSpeed2;
 }
 
 function outOfBoundsCheck()
 {
-    if(shapeX > width)
+  for (var i = 0; i < shapeXSpeed.length; i++)
+  {
+    if(shapeX[i] > width)
     {
-        shapeX = 0;
+      shapeX[i] = 0;
     }
-    if(shapeX < 0)
+    if(shapeX[i] < 0)
     {
-        shapeX = width;
+      shapeX[i] = width;
     }
-    if(shapeY > height)
+    if(shapeY[i] > height)
     {
-        shapeY = 0;
+      shapeY[i] = 0;
     }
-    if(shapeY < 0)
+    if(shapeY[i] < 0)
     {
-        shapeY = height;
+      shapeY[i] = height;
     }
-    if(shapeX2 > width)
-    {
-        shapeX2 = 0;
-    }
-    if(shapeX2 < 0)
-    {
-        shapeX2 = width;
-    }
-    if(shapeY2 > height)
-    {
-        shapeY2 = 0;
-    }
-    if(shapeY2 < 0)
-    {
-        shapeY2 = height;
-    }
+  }
+  //  if(shapeX2 > width)
+  //  {
+  //      shapeX2 = 0;
+  //  }
+  //  if(shapeX2 < 0)
+  //  {
+  //      shapeX2 = width;
+  //  }
+  //  if(shapeY2 > height)
+  //  {
+  //      shapeY2 = 0;
+  //  }
+  //  if(shapeY2 < 0)
+  //  {
+  //      shapeY2 = height;
+  //  }
 
 }
 
@@ -193,8 +217,13 @@ function exitCheck()
     }
 }
 
-function mouseClicked()
+function createShapeOnMC()
     {
-      mouseShapeX = mouseX;
-      mouseShapeY = mouseY;
+      fill(255, 5, 238);
+      circle(mouseShapeX, mouseShapeY, 25);
+    }
+
+    function getRandomNumber(number) {
+        console.log("random number" + number);
+        return Math.floor(Math.random() * number) + 10;
     }
