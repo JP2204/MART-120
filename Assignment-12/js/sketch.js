@@ -63,7 +63,8 @@ function draw()
     exitCheck();
 
     // creates the shape based on the mouse click location
-    createShapeOnMC();
+    
+  }
 
 
 
@@ -86,7 +87,7 @@ function exitMessage()
 {
      // exit message
      textSize(16);
-     text("EXIT", width-50,height-50)
+     text("EXIT", width-50,height-50);
 }
 
 function createCharacter()
